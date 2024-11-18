@@ -197,8 +197,15 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  let result = true;
+  for (let i = 2; i <= n - 1; i += 1) {
+    if (n % i === 0) {
+      result = false;
+      break;
+    }
+  }
+  return result;
 }
 
 /**
@@ -248,8 +255,10 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) return 0;
+  if (index === 1) return 1;
+  return getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
 }
 
 /**
@@ -282,8 +291,11 @@ function getSumToN(n) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  if (num === 0) {
+    return 0;
+  }
+  return (num % 10) + getSumOfDigits(Math.floor(num / 10));
 }
 
 /**
@@ -385,8 +397,8 @@ function toPrecision(number, precision) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return number.valueOf();
 }
 
 /**
@@ -572,8 +584,8 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
 }
 
 /**
@@ -603,8 +615,17 @@ function getHypotenuse(a, b) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  const absNumber = Math.abs(number);
+  if (absNumber === 0 || absNumber === 1) return absNumber;
+
+  let count = 1;
+  for (let i = 2; i <= absNumber; i += 1) {
+    if (i % 2 === 1) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 module.exports = {
